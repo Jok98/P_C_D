@@ -10,9 +10,20 @@ import java.util.Scanner;
 
 /**
  * 
- * @TheBigAuthor jokmoi
- * @pseudoauthor quel coso rabuffetti
- *
+ * @Author Matteo Moi
+ * @Author Alex Rabuffetti
+ * Jacopo Alessi
+ * 
+ * La classe S_Master crea un ServerSocket {@link #server} con porta = {@link #PORT}. 
+ * Viene creato un {@link #registry} con porta "1099" il quale verrà utilizzato per la comunicazione RMI con le applicazioni C_main e F_main. 
+ * Viene creato un nuovo {@link #in} che si occupa della lettura dei messaggi inviati da C_main e F_main e riguardante la tipologia di richiesta (se essa è fatta da F o C).
+ * Il ciclo while prevede che S_Master rimanga in attesa della richiesta identificata da (String user).
+ * In base al richiedente S_Master la classe va a creare dei thread slave i quali si occuperanno della gestione specifica della richiesta.
+ * Entrambi i thread (F_slave e C_Slave) richiedono come argomento il registry in modo che tutte le applicazioni impieghino unicamente quel singolo registro per il binding e il lookup.
+ * F_Slave richiede per il suo funzionamento l'URL e l'HTML  ottenuti dall'applicazione F_Main e trasferiti tramite Socket ObjectInputStream.
+ * C_Slave richiede un {@link #ID} per identificare ogni C_Main. ID viene inizializzato come int per essere poi incrementato ad ogni ciclo. 
+ * 
+ * 
  */
 
 public class S_Master {
@@ -29,10 +40,10 @@ public class S_Master {
 	static int i;
 	static Boolean update;
 	public static void main(String[] Args) throws  ClassNotFoundException, IOException, AlreadyBoundException {
-		if (System.getSecurityManager() == null) { 
+		/*if (System.getSecurityManager() == null) { 
 		     System.setSecurityManager(new SecurityManager()); 
-		   }
-		System.setProperty("java.rmi.server.hostname","192.168.1.7");
+		   }*/
+		System.setProperty("java.rmi.server.hostname","127.0.0.1");
 		System.out.println("Server avviato");
 		
 		String host = (Args.length < 1) ? null : Args[0];

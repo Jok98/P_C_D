@@ -15,8 +15,16 @@ import S.S_C_int;
 
 /**
  * 
- * @TheBigAuthor jokmoi
- * @pseudoauthor quel coso rabuffetti
+ * @Author Matteo Moi
+ * @Author Alex Rabuffetti
+ * Jacopo Alessi
+ * 
+ * Ad ogni avvio di un'istanza di C_main la quale si collega a S_Master (tramite {@link #socket}) che a sua volta va a creare un thread (C_slave) apposito per gestire la richiesta.
+ * C_main esegue l'accesso al registry. Viene poi utilizzato un lookup per accedere ai metodi remoti implementati da C_slave.
+ * Tramite metodi remoti L'istanza C_main viene inserita in una {@link #userList} dichiarata e contenuta in C_slave che tiene conto delle istanze di C_main che hanno fatto richiesta di abbonamento ad S_Master.
+ * Viene generato randomicamente un boolean, che sarà usato come condizione per mantenere o no l'istanza di C_main attiva.
+ * All'interno del ciclo se vengono rispettate le condizioni C_main visualizzerà a schermo l'URL e l'HTML inviati da F_main.
+ * All'uscita del ciclo è previsto la cancellazione dell'utente dalla {@link #userList} degli abbonati.
  * 
  */
 public class C_main {
@@ -38,12 +46,12 @@ public class C_main {
      * 
      */
     public static void main (String[] args) throws NotBoundException, IOException, ClassNotFoundException, InterruptedException {
-    	if (System.getSecurityManager() == null) { 
+    	/*if (System.getSecurityManager() == null) { 
     	     System.setSecurityManager(new SecurityManager()); 
-    	   }
+    	   }*/
     	InetAddress addr = InetAddress.getByName(null);
     	Socket socket = new Socket(addr, 8080);
-    	System.out.println("connsesso");
+    	System.out.println("connesso");
     	ObjectOutputStream  out = new ObjectOutputStream(socket.getOutputStream());
     	out.writeObject("C");
     	out.flush();

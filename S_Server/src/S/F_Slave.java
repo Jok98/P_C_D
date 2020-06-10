@@ -9,8 +9,14 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 /**
  * 
- * @TheBigAuthor jokmoi
- * @pseudoauthor Sir_Pente
+ * @Author Matteo Moi
+ * @Author Alex Rabuffetti
+ * Jacopo Alessi
+ * 
+ * Tramite {@link #registry} ottenuto da S_Master, F_Slave fa un autorebind.
+ * F_Slave implementa S_F_int.
+ * Viene implementato il metodo {@link #getPage(String)} che tramite un {@link #url} ottiene il codice {@link #html} della pagina indicata dall'applicazione F_Slave.
+ * {@link #getPage(String)} @return {@link #html}.
  * 
  */
 
@@ -26,13 +32,11 @@ public class F_Slave extends Thread implements S_F_int{
 
 		
 	}
-	/**
-	 * 
-	 */
+	
 	public void run() {
-		if (System.getSecurityManager() == null) { 
+		/*if (System.getSecurityManager() == null) { 
 		     System.setSecurityManager(new SecurityManager()); 
-		   }
+		   }*/
 		System.out.println("Partito");
 		try {
 		
@@ -59,11 +63,6 @@ public class F_Slave extends Thread implements S_F_int{
 	}
 
 
-
-
-	/**
-	 * 
-	 */
 	@Override
 	public String getPage(String url) throws IOException {
 		URL urlObject = new URL(url);
@@ -90,18 +89,4 @@ public class F_Slave extends Thread implements S_F_int{
 
 	}
  
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
 }
