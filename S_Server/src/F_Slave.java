@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
@@ -21,39 +23,54 @@ public class F_Slave extends Thread implements S_F_int{
 	static String url;
 	static String html;
 	static String host;
-	public F_Slave(Registry registry, String host) {
-		this.registry= registry;
-		this.host=host;
 
-		start();
+	public F_Slave(Registry registry) {
+		this.registry= registry;
+
+		
 	}
+
+	
 	
 	
 	public void run() {
+		
 		System.out.println("Partito");
 		try {
 			
-			S_F_int obj = new F_Slave(registry,host);
-			
-			
+			S_F_int obj = new F_Slave(registry);
 			S_F_int F = (S_F_int)UnicastRemoteObject.exportObject(obj, 1099);
-			
 			registry.rebind("SF",F);
 			
-			System.out.print("Registro caricato : " + registry.list());
+			/*
+			 * client
+			 */
+			/*registry = LocateRegistry.getRegistry();
+			F_S_int fs = (F_S_int)registry.lookup("FS");
+			url = fs.getUrl();
+			System.out.println(url);
+			*/
+			System.out.println("Registro caricato : " + registry.list());
 			
-		} catch (RemoteException e) {
+			
+			
+		} catch (IOException e) {
 			
 			e.printStackTrace();
 		}
-		
+		try {
+			sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
 	@Override
 	public String getUrl() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return url;
 	}
 
 
@@ -79,6 +96,11 @@ public class F_Slave extends Thread implements S_F_int{
         return html;
 
 	}
+
+
+
+
+
 
 
 	

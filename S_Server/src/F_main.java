@@ -24,13 +24,13 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 
-public class F_main extends UnicastRemoteObject  {
+public class F_main extends UnicastRemoteObject implements F_S_int  {
     
-    public F_main() throws RemoteException {
+    public F_main() throws RemoteException  {
     
     }
     
-    static String id = "1";
+    static String id ;
     static String html;
     static String url;
     static Registry registry;
@@ -49,7 +49,7 @@ public class F_main extends UnicastRemoteObject  {
 
     
 
-	public static void main(String[] args) throws IOException, URISyntaxException, AlreadyBoundException, NotBoundException {
+	public static void main(String[] args) throws IOException, URISyntaxException, AlreadyBoundException, NotBoundException, ClassNotFoundException {
     	
     	
     	InetAddress addr = InetAddress.getByName(null);
@@ -66,15 +66,30 @@ public class F_main extends UnicastRemoteObject  {
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
     	System.out.println("Inserire URL del sito desiderato");
     	url = input.readLine();
+    	
     	registry = LocateRegistry.getRegistry();
+    	//client
     	S_F_int sf = (S_F_int) registry.lookup("SF");
     	String texthtml=sf.getPage(url);
-    	System.out.print(texthtml);
-	
+    	System.out.println(texthtml);
+    	//server
+    	/*
+    	F_main f_main = new F_main();
+    	registry.rebind("FS", f_main);
+    	*/
+    	/*
+    	out.writeObject(texthtml);
+    	out.flush();
+    	//out.close();
+    	out.writeObject(url);
+    	out.flush();
+    	*/
     	
 
     }
 
+	
+	
 
 
 
