@@ -24,12 +24,11 @@ public class C_Slave extends Thread implements S_C_int{
     
    	 
    	 try {
-   		 
+   		 //S_Master.update=true;
    		 S_C_int obj = new C_Slave(reg, host, ID);
    		 S_C_int C = (S_C_int)UnicastRemoteObject.exportObject(obj, 1099);
    		 reg.rebind("SC", C);
    		 sleep(1000);
-   		 
 
    		 
    	 } catch (RemoteException | InterruptedException e) {
@@ -37,7 +36,7 @@ public class C_Slave extends Thread implements S_C_int{
    		 ((Throwable) e).printStackTrace();
    	 }
    	 
-   	 
+   	//S_Master.update=false;
     }
     @Override
     public synchronized void addUser(int ID) throws RemoteException {
@@ -56,7 +55,7 @@ public class C_Slave extends Thread implements S_C_int{
 
     @Override
     public String sendHtml() throws RemoteException {
-   	 String html = F_Slave.html;
+   	 String html = S_Master.html;
    	 return html;
     }
 

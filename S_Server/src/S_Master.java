@@ -35,20 +35,28 @@ public class S_Master {
 		try {
 			
 		      while(true) {
+		    	  //update = false;
 		    	  socket  = server.accept();
 		    	  in  = new ObjectInputStream(socket.getInputStream());
 		    	  @SuppressWarnings("resource")
 		    	  Scanner scan = new Scanner((String) in.readObject()).useDelimiter("lll");
+		    	  
 		    	  String user = scan.next();
-			    
+		    	  
 		    	  //in.close();
 		    	  System.out.println("Ricevuto : "+user);
 		        if(user.equals("F")) {
 		        	url = scan.next();
 		        	
 		        	//html = scan.next();
-		        	//System.out.println(url);
-		        	new F_Slave(registry).start();
+		        	System.out.println(html);
+		        	//new F_Slave(registry).start();
+		        	F_Slave f= new F_Slave(registry);
+                    f.start();
+                    
+                    String tmphtml = f.getPage(url);
+                    html= tmphtml.substring(0, 40);
+                    System.out.println("RRRRR : "+html);
 		        	update = true;
 		        	System.out.println("nuovo F_Slave creato");
 		        	in.close();
@@ -56,6 +64,7 @@ public class S_Master {
 				}else if(user.equals("C")) {
 					i++;
 					ID = ID +1;
+					//update = true;
 					new C_Slave(registry,host,ID);
 					System.out.println("nuovo C_Slave creato");
 					//in.close();

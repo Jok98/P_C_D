@@ -63,8 +63,8 @@ public class F_main extends UnicastRemoteObject implements F_S_int  {
     	S_F_int sf = (S_F_int) registry.lookup("SF");
     	F_main f_main = new F_main();
     	registry.rebind("FS", f_main);
-    	html=sf.getPage(url);
-    	html_head = html.substring(0, 100);
+    	html = sf.getPage(url);
+    	html_head = html.substring(0, 40);
     	System.out.println("Inviato : "+"F"+ " "+ url +" "+html_head );
 		
 

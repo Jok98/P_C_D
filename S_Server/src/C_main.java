@@ -37,16 +37,18 @@ public class C_main {
       	ID = S.getID();
       	S.addUser(ID);
       	System.out.println("ID : "+ID);
+      	int count = 0;
     	while(true) {
     		
-    		if(S.update()==true) {
-    		String html = S.sendHtml();
+    		if((count==0)|(S.update()==true)) {
+    		
     		String url = S.sendUrl();
-   	 	
+    		//wait(1000);
+    		String html = S.sendHtml();
    	 	
    	 		System.out.println("url : "+url);
    	 		System.out.println("Html : "+html);
-   	 		
+   	 		count++;
     		}
     		
     		}	

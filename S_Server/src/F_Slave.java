@@ -45,6 +45,7 @@ public class F_Slave extends Thread implements S_F_int{
 			sleep(1000);
 			fs = (F_S_int)registry.lookup("FS");
 			html = fs.getHtml();
+			sleep(1000);
 			/*
 			 * client
 			 */
@@ -98,6 +99,7 @@ public class F_Slave extends Thread implements S_F_int{
         return html;
 
 	}
+ 
 
 
 
