@@ -1,3 +1,4 @@
+package S;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,7 +7,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-
+/**
+ * 
+ * @TheBigAuthor jokmoi
+ * @pseudoauthor Sir_Pente
+ * 
+ */
 
 
 //usare stub extends UnicastRemoteObject
@@ -15,13 +21,14 @@ public class F_Slave extends Thread implements S_F_int{
 	static String url;
 	static String html;
 	static String host;
-	static F_S_int fs;
 	public F_Slave(Registry registry) {
 		this.registry= registry;
 
 		
 	}
-
+	/**
+	 * 
+	 */
 	public void run() {
 		
 		System.out.println("Partito");
@@ -34,7 +41,7 @@ public class F_Slave extends Thread implements S_F_int{
 			
 			System.out.println("Registro caricato : " + registry.list());
 			System.out.println("S_Thread ha ricevuto l'url : " + S_Master.url);
-			System.out.println("S_Thread ha ricevuto l'head : " + html);
+			System.out.println("S_Thread ha ricevuto l'head_html : " +S_Master.html);
 			
 			
 		} catch (IOException | InterruptedException e) {
@@ -52,7 +59,9 @@ public class F_Slave extends Thread implements S_F_int{
 
 
 
-	
+	/**
+	 * 
+	 */
 	@Override
 	public String getPage(String url) throws IOException {
 		URL urlObject = new URL(url);

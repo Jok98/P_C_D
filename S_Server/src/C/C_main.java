@@ -1,3 +1,4 @@
+package C;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,7 +11,14 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Random;
 
+import S.S_C_int;
 
+/**
+ * 
+ * @TheBigAuthor jokmoi
+ * @pseudoauthor quel coso rabuffetti
+ * 
+ */
 public class C_main {
     static String ID;
     static ArrayList<Integer> userList = new ArrayList<Integer>();
@@ -20,7 +28,15 @@ public class C_main {
     public C_main() {
    	 
     }
-    
+    /**
+     * 
+     * @param args
+     * @throws NotBoundException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws InterruptedException
+     * 
+     */
     public static void main (String[] args) throws NotBoundException, IOException, ClassNotFoundException, InterruptedException {
     	InetAddress addr = InetAddress.getByName(null);
     	Socket socket = new Socket(addr, 8080);
@@ -38,16 +54,9 @@ public class C_main {
       	Random ran = new Random();
       	
       	int count = 0;
-    	while(true) {
+    	do {
     		Thread.sleep(10000);
-    		if(ran.nextBoolean()==false) {
-    			
-    			S.removeUser("ID");
-    			System.out.println("Utente : "+ID+" Rimosso");
-    			System.out.println(userList);
-    			
-    			break;
-    		}
+
     		if((count==0)|(S.update()==true)) {
     		
     		String url = S.sendUrl();
@@ -59,7 +68,11 @@ public class C_main {
    	 		count++;
     		}
     		
-    		}	
+    		}while(ran.nextBoolean()==true);
+    		//ID = S.getID();
+    		S.removeUser(ID);
+    		System.out.println("Utente : "+ID+" Rimosso");
+    		System.out.println(userList);
     		System.exit(1);
     }
     

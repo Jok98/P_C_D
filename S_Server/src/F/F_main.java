@@ -1,3 +1,4 @@
+package F;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +13,14 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 
-public class F_main extends UnicastRemoteObject implements F_S_int  {
+/**
+ * 
+ * @TheBigAuthor jokmoi
+ * @pseudoauthor Sir_Pente
+ *
+ */
+
+public class F_main extends UnicastRemoteObject {
     
     public F_main() throws RemoteException  {
     
@@ -23,7 +31,15 @@ public class F_main extends UnicastRemoteObject implements F_S_int  {
     static String html_head;
     static String url;
     static Registry registry;
-
+    /**
+     * 
+     * @param args
+     * @throws IOException
+     * @throws URISyntaxException
+     * @throws AlreadyBoundException
+     * @throws NotBoundException
+     * @throws ClassNotFoundException
+     */
 	public static void main(String[] args) throws IOException, URISyntaxException, AlreadyBoundException, NotBoundException, ClassNotFoundException {
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
     	System.out.println("Inserire URL del sito desiderato");
@@ -40,12 +56,8 @@ public class F_main extends UnicastRemoteObject implements F_S_int  {
     	
 
     }
+	
 
-	@Override
-	public String getHtml() throws RemoteException {
-		
-		return html_head;
-	}
 
 	
 }

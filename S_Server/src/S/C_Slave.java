@@ -1,8 +1,13 @@
+package S;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
+/**
+ * @TheBigAuthor jokmoi
+ * @pseudoauthor Sir_Pente
+ *
+ */
 public class C_Slave extends Thread implements S_C_int{
     static Registry reg;
     static String host;
@@ -35,16 +40,17 @@ public class C_Slave extends Thread implements S_C_int{
     }
     @Override
     public synchronized void addUser(String ID) throws RemoteException {
-   	 userList.add(ID);
-   	 System.out.print("Aggiunto utente : "+ID);
-   	System.out.println("Lista : "+ userList);
+   	 	userList.add(ID);
+   	 	System.out.println("Aggiunto utente : "+ID);
+   	 	System.out.println("Lista : "+ userList);
    	 
     }
 
     @Override
     public synchronized void removeUser(String ID) throws RemoteException {
-   	 userList.remove(ID);
-   	 System.out.print("Rimosso utente : "+ID);
+    	userList.remove(ID);
+    	System.out.println("Rimosso utente : "+ ID);
+    	System.out.println("Lista : "+ userList);
     }
 
 

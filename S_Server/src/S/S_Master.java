@@ -1,3 +1,4 @@
+package S;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -7,6 +8,12 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
+/**
+ * 
+ * @TheBigAuthor jokmoi
+ * @pseudoauthor quel coso rabuffetti
+ *
+ */
 
 public class S_Master {
 	public static final int PORT=8080;

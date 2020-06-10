@@ -1,6 +1,12 @@
+package C;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
+/**
+ * 
+ * @TheBigAuthor jokmoi
+ * @pseudoauthor Sir_Pente
+ * 
+ */
 public interface S_C_int extends Remote {
 	void addUser(String iD) throws RemoteException;
 	void removeUser(String string) throws RemoteException;
