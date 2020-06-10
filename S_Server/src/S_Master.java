@@ -22,6 +22,7 @@ public class S_Master {
 	static Socket socket;
 	static ObjectInputStream in;
 	static int i;
+	static Boolean update;
 	public static void main(String[] Args) throws  ClassNotFoundException, IOException, AlreadyBoundException {
 		System.setProperty("java.rmi.server.hostname","192.168.1.7");
 		System.out.println("Server avviato");
@@ -44,9 +45,11 @@ public class S_Master {
 		    	  System.out.println("Ricevuto : "+user);
 		        if(user.equals("F")) {
 		        	url = scan.next();
+		        	
 		        	//html = scan.next();
 		        	//System.out.println(url);
-		        	new F_Slave(registry).start();;	
+		        	new F_Slave(registry).start();
+		        	update = true;
 		        	System.out.println("nuovo F_Slave creato");
 		        	in.close();
 		        	
@@ -60,6 +63,7 @@ public class S_Master {
 				}
 		    }
 		    } finally {
+		    	
 		      socket.close();
 		      server.close();
 		    }

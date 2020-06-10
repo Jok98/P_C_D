@@ -4,6 +4,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 public class C_Slave extends Thread implements S_C_int{
     static Registry reg;
@@ -15,6 +16,7 @@ public class C_Slave extends Thread implements S_C_int{
    	 this.reg = reg;
    	 this.host = host;
    	 this.ID = ID;
+   
    	 start();
     }
     
@@ -22,11 +24,12 @@ public class C_Slave extends Thread implements S_C_int{
     
    	 
    	 try {
+   		 
    		 S_C_int obj = new C_Slave(reg, host, ID);
    		 S_C_int C = (S_C_int)UnicastRemoteObject.exportObject(obj, 1099);
    		 reg.rebind("SC", C);
    		 sleep(1000);
-   				 
+   		 
 
    		 
    	 } catch (RemoteException | InterruptedException e) {
@@ -59,7 +62,7 @@ public class C_Slave extends Thread implements S_C_int{
 
     @Override
     public String sendUrl() throws RemoteException {
-   	 String url = S_Master.url;
+   	 String url =S_Master.url;
    	 return url;
     }
 
@@ -68,4 +71,19 @@ public class C_Slave extends Thread implements S_C_int{
    	
    	 return ID;
     }
+
+	@Override
+	public Boolean update() throws RemoteException {
+		if(S_Master.update==true) {
+			S_Master.update=false;
+			return true;
+		}
+		//S_Master.update=false;
+		return false;
+		
+		
+	}
+
+
+
 }

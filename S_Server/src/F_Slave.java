@@ -24,7 +24,7 @@ public class F_Slave extends Thread implements S_F_int{
 	static String url;
 	static String html;
 	static String host;
-
+	static F_S_int fs;
 	public F_Slave(Registry registry) {
 		this.registry= registry;
 
@@ -43,7 +43,7 @@ public class F_Slave extends Thread implements S_F_int{
 			S_F_int F = (S_F_int)UnicastRemoteObject.exportObject(obj, 1099);
 			registry.rebind("SF",F);
 			sleep(1000);
-			F_S_int fs = (F_S_int)registry.lookup("FS");
+			fs = (F_S_int)registry.lookup("FS");
 			html = fs.getHtml();
 			/*
 			 * client
@@ -70,13 +70,9 @@ public class F_Slave extends Thread implements S_F_int{
 	}
 
 
-	@Override
-	public String getUrl() throws RemoteException {
-		
-		return url;
-	}
 
 
+	
 	@Override
 	public String getPage(String url) throws IOException {
 		URL urlObject = new URL(url);
