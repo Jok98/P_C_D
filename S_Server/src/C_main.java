@@ -37,12 +37,12 @@ public class C_main {
       	S_C_int S = (S_C_int) registry_S_C.lookup("SC");    
       	ID = S.getID();
       	S.addUser(ID);
-      	System.out.println("ID : "+ID);
+      	System.out.println("Utente iscritto ID : "+ID);
       	Random ran = new Random();
       	
       	int count = 0;
     	while(true) {
-    		//Thread.sleep(10000);
+    		Thread.sleep(10000);
     		if(ran.nextBoolean()==false) {
     			
     			S.removeUser("ID");
@@ -63,7 +63,7 @@ public class C_main {
     		}
     		
     		}	
-    		
+    		System.exit(1);
    	 		//socket.close();
     	
     	
