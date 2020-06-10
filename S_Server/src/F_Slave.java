@@ -42,10 +42,10 @@ public class F_Slave extends Thread implements S_F_int{
 			S_F_int obj = new F_Slave(registry);
 			S_F_int F = (S_F_int)UnicastRemoteObject.exportObject(obj, 1099);
 			registry.rebind("SF",F);
-			sleep(1000);
+			sleep(1000);/*
 			fs = (F_S_int)registry.lookup("FS");
-			html = fs.getHtml();
-			sleep(1000);
+			html = fs.getHtml();*/
+			//sleep(1000);
 			/*
 			 * client
 			 */
@@ -58,7 +58,7 @@ public class F_Slave extends Thread implements S_F_int{
 			System.out.println("S_Thread ha ricevuto l'head : " + html);
 			
 			
-		} catch (IOException | NotBoundException | InterruptedException e) {
+		} catch (IOException | InterruptedException e) {
 			
 			e.printStackTrace();
 		}

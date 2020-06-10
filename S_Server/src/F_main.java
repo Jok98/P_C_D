@@ -56,7 +56,7 @@ public class F_main extends UnicastRemoteObject implements F_S_int  {
     	out.flush();
 		out.close();
 		System.out.println("Ottenuto html dall' url "+ url);
-    	
+    	/*
 		System.setProperty("java.rmi.server.hostname","192.168.1.7");
 		registry = LocateRegistry.getRegistry();
     	//client
@@ -66,7 +66,7 @@ public class F_main extends UnicastRemoteObject implements F_S_int  {
     	html = sf.getPage(url);
     	html_head = html.substring(0, 40);
     	System.out.println("Inviato : "+"F"+ " "+ url +" "+html_head );
-		
+		*/
 
     	//server
     	

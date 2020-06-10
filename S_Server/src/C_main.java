@@ -9,11 +9,12 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 
 public class C_main {
-    static int ID;
+    static String ID;
     static ArrayList<Integer> userList = new ArrayList<Integer>();
     static ObjectInputStream in;
     static Socket socket;
@@ -37,9 +38,19 @@ public class C_main {
       	ID = S.getID();
       	S.addUser(ID);
       	System.out.println("ID : "+ID);
+      	Random ran = new Random();
+      	
       	int count = 0;
     	while(true) {
-    		
+    		//Thread.sleep(10000);
+    		if(ran.nextBoolean()==false) {
+    			
+    			S.removeUser("ID");
+    			System.out.println("Utente : "+ID+" Rimosso");
+    			System.out.println(userList);
+    			
+    			break;
+    		}
     		if((count==0)|(S.update()==true)) {
     		
     		String url = S.sendUrl();

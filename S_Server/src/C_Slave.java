@@ -9,10 +9,10 @@ import java.util.concurrent.Semaphore;
 public class C_Slave extends Thread implements S_C_int{
     static Registry reg;
     static String host;
-    static int ID;
-    static ArrayList<Integer> userList = new ArrayList<Integer>();
+    static String ID;
+    static ArrayList<String> userList = new ArrayList<String>();
     
-    public C_Slave(Registry reg, String host, int ID) {
+    public C_Slave(Registry reg, String host, String ID) {
    	 this.reg = reg;
    	 this.host = host;
    	 this.ID = ID;
@@ -39,7 +39,7 @@ public class C_Slave extends Thread implements S_C_int{
    	//S_Master.update=false;
     }
     @Override
-    public synchronized void addUser(int ID) throws RemoteException {
+    public synchronized void addUser(String ID) throws RemoteException {
    	 userList.add(ID);
    	 System.out.print("Aggiunto utente : "+ID);
    	System.out.println("Lista : "+ userList);
@@ -47,7 +47,7 @@ public class C_Slave extends Thread implements S_C_int{
     }
 
     @Override
-    public synchronized void removeUser(int ID) throws RemoteException {
+    public synchronized void removeUser(String ID) throws RemoteException {
    	 userList.remove(ID);
    	 System.out.print("Rimosso utente : "+ID);
     }
@@ -66,7 +66,7 @@ public class C_Slave extends Thread implements S_C_int{
     }
 
     @Override
-    public synchronized int getID() throws RemoteException {
+    public synchronized String getID() throws RemoteException {
    	
    	 return ID;
     }

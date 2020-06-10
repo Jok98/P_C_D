@@ -56,16 +56,16 @@ public class S_Master {
                     
                     String tmphtml = f.getPage(url);
                     html= tmphtml.substring(0, 40);
-                    System.out.println("RRRRR : "+html);
+                    //System.out.println("RRRRR : "+html);
 		        	update = true;
 		        	System.out.println("nuovo F_Slave creato");
 		        	in.close();
 		        	
 				}else if(user.equals("C")) {
 					i++;
-					ID = ID +1;
+					String id = Integer.toString(ID +i);
 					//update = true;
-					new C_Slave(registry,host,ID);
+					new C_Slave(registry,host,id);
 					System.out.println("nuovo C_Slave creato");
 					//in.close();
 					
