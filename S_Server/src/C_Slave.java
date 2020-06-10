@@ -1,10 +1,7 @@
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
 
 public class C_Slave extends Thread implements S_C_int{
     static Registry reg;
@@ -24,7 +21,6 @@ public class C_Slave extends Thread implements S_C_int{
     
    	 
    	 try {
-   		 //S_Master.update=true;
    		 S_C_int obj = new C_Slave(reg, host, ID);
    		 S_C_int C = (S_C_int)UnicastRemoteObject.exportObject(obj, 1099);
    		 reg.rebind("SC", C);
@@ -36,7 +32,6 @@ public class C_Slave extends Thread implements S_C_int{
    		 ((Throwable) e).printStackTrace();
    	 }
    	 
-   	//S_Master.update=false;
     }
     @Override
     public synchronized void addUser(String ID) throws RemoteException {
@@ -77,7 +72,6 @@ public class C_Slave extends Thread implements S_C_int{
 			S_Master.update=false;
 			return true;
 		}
-		//S_Master.update=false;
 		return false;
 		
 		

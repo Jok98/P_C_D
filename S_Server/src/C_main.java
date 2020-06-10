@@ -5,12 +5,10 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Semaphore;
 
 
 public class C_main {
@@ -31,7 +29,6 @@ public class C_main {
     	out.writeObject("C");
     	out.flush();
     	out.close();
-    	//ObjectInputStream obj_in_s = new ObjectInputStream(socket.getInputStream());
       	String host = (args.length < 1) ? null : args[0];
       	Registry registry_S_C = LocateRegistry.getRegistry(host);
       	S_C_int S = (S_C_int) registry_S_C.lookup("SC");    
@@ -64,9 +61,6 @@ public class C_main {
     		
     		}	
     		System.exit(1);
-   	 		//socket.close();
-    	
-    	
     }
     
 }

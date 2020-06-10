@@ -2,20 +2,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
-import java.rmi.AlreadyBoundException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 
 //usare stub extends UnicastRemoteObject
@@ -31,9 +22,6 @@ public class F_Slave extends Thread implements S_F_int{
 		
 	}
 
-	
-	
-	
 	public void run() {
 		
 		System.out.println("Partito");
@@ -42,16 +30,7 @@ public class F_Slave extends Thread implements S_F_int{
 			S_F_int obj = new F_Slave(registry);
 			S_F_int F = (S_F_int)UnicastRemoteObject.exportObject(obj, 1099);
 			registry.rebind("SF",F);
-			sleep(1000);/*
-			fs = (F_S_int)registry.lookup("FS");
-			html = fs.getHtml();*/
-			//sleep(1000);
-			/*
-			 * client
-			 */
-			
-		
-			
+			sleep(1000);
 			
 			System.out.println("Registro caricato : " + registry.list());
 			System.out.println("S_Thread ha ricevuto l'url : " + S_Master.url);

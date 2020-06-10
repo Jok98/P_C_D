@@ -3,10 +3,8 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.AlreadyBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 
@@ -47,16 +45,11 @@ public class S_Master {
 		    	  System.out.println("Ricevuto : "+user);
 		        if(user.equals("F")) {
 		        	url = scan.next();
-		        	
-		        	//html = scan.next();
-		        	System.out.println(html);
-		        	//new F_Slave(registry).start();
+		        	System.out.println("S : Html & Url");
 		        	F_Slave f= new F_Slave(registry);
                     f.start();
-                    
                     String tmphtml = f.getPage(url);
                     html= tmphtml.substring(0, 40);
-                    //System.out.println("RRRRR : "+html);
 		        	update = true;
 		        	System.out.println("nuovo F_Slave creato");
 		        	in.close();
@@ -64,10 +57,8 @@ public class S_Master {
 				}else if(user.equals("C")) {
 					i++;
 					String id = Integer.toString(ID +i);
-					//update = true;
 					new C_Slave(registry,host,id);
 					System.out.println("nuovo C_Slave creato");
-					//in.close();
 					
 				}
 		    }
@@ -76,8 +67,7 @@ public class S_Master {
 		      socket.close();
 		      server.close();
 		    }
-		
-		//create_single_server();
+
 		}
 	
 }
