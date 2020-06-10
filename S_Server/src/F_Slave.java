@@ -42,9 +42,9 @@ public class F_Slave extends Thread implements S_F_int{
 			S_F_int obj = new F_Slave(registry);
 			S_F_int F = (S_F_int)UnicastRemoteObject.exportObject(obj, 1099);
 			registry.rebind("SF",F);
-			
-			//html = (String) S_Master.in.readObject();
-			
+			sleep(1000);
+			F_S_int fs = (F_S_int)registry.lookup("FS");
+			html = fs.getHtml();
 			/*
 			 * client
 			 */
@@ -54,17 +54,17 @@ public class F_Slave extends Thread implements S_F_int{
 			
 			System.out.println("Registro caricato : " + registry.list());
 			System.out.println("S_Thread ha ricevuto l'url : " + S_Master.url);
-			System.out.println("S_Thread ha ricevuto l'head : " + S_Master.html);
+			System.out.println("S_Thread ha ricevuto l'head : " + html);
 			
 			
-		} catch (IOException e) {
+		} catch (IOException | NotBoundException | InterruptedException e) {
 			
 			e.printStackTrace();
 		}
 		try {
 			sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -106,11 +106,7 @@ public class F_Slave extends Thread implements S_F_int{
 
 
 
-	@Override
-	public String sendData() throws IOException {
-		
-		return "Ehi";
-	}
+
 
 
 

@@ -24,7 +24,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 
-public class F_main extends UnicastRemoteObject  {
+public class F_main extends UnicastRemoteObject implements F_S_int  {
     
     public F_main() throws RemoteException  {
     
@@ -32,6 +32,7 @@ public class F_main extends UnicastRemoteObject  {
     
     static String id ;
     static String html;
+    static String html_head;
     static String url;
     static Registry registry;
     
@@ -60,15 +61,17 @@ public class F_main extends UnicastRemoteObject  {
 		registry = LocateRegistry.getRegistry();
     	//client
     	S_F_int sf = (S_F_int) registry.lookup("SF");
+    	F_main f_main = new F_main();
+    	registry.rebind("FS", f_main);
     	html=sf.getPage(url);
-    	System.out.println("Inviato : "+"F"+ " "+ url +" "+html );
+    	html_head = html.substring(0, 100);
+    	System.out.println("Inviato : "+"F"+ " "+ url +" "+html_head );
 		
 
     	//server
-    	/*
-    	F_main f_main = new F_main();
-    	registry.rebind("FS", f_main);
-    	*/
+    	
+    	
+    	
     	/*
     	out.writeObject(texthtml);
     	out.flush();
@@ -79,6 +82,19 @@ public class F_main extends UnicastRemoteObject  {
     	
 
     }
+
+
+
+
+
+
+
+
+	@Override
+	public String getHtml() throws RemoteException {
+		
+		return html_head;
+	}
 
 
 	
