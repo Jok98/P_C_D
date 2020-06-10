@@ -21,6 +21,7 @@ public class S_Master {
 	static S_F_int sf;
 	static Socket socket;
 	static ObjectInputStream in;
+	static int i;
 	public static void main(String[] Args) throws  ClassNotFoundException, IOException, AlreadyBoundException {
 		System.setProperty("java.rmi.server.hostname","192.168.1.7");
 		System.out.println("Server avviato");
@@ -32,15 +33,15 @@ public class S_Master {
 		server = new ServerSocket(PORT);
 		try {
 			
-		      for (int i = 0; i <4;i++) {
-		    	socket  = server.accept();
-		       in  = new ObjectInputStream(socket.getInputStream());
-		       @SuppressWarnings("resource")
-			Scanner scan = new Scanner((String) in.readObject()).useDelimiter("lll");
-			    String user = scan.next();
+		      while(true) {
+		    	  socket  = server.accept();
+		    	  in  = new ObjectInputStream(socket.getInputStream());
+		    	  @SuppressWarnings("resource")
+		    	  Scanner scan = new Scanner((String) in.readObject()).useDelimiter("lll");
+		    	  String user = scan.next();
 			    
-			  //in.close();
-			    System.out.println("Ricevuto : "+user);
+		    	  //in.close();
+		    	  System.out.println("Ricevuto : "+user);
 		        if(user.equals("F")) {
 		        	url = scan.next();
 		        	//html = scan.next();
@@ -50,6 +51,7 @@ public class S_Master {
 		        	in.close();
 		        	
 				}else if(user.equals("C")) {
+					i++;
 					ID = ID +1;
 					new C_Slave(registry,host,ID);
 					System.out.println("nuovo C_Slave creato");
@@ -65,10 +67,4 @@ public class S_Master {
 		//create_single_server();
 		}
 	
-
-	
-	public static void create_single_server() throws IOException, ClassNotFoundException, AlreadyBoundException {
-		
-		
-	}
 }
