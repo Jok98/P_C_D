@@ -29,6 +29,9 @@ public class S_Master {
 	static int i;
 	static Boolean update;
 	public static void main(String[] Args) throws  ClassNotFoundException, IOException, AlreadyBoundException {
+		if (System.getSecurityManager() == null) { 
+		     System.setSecurityManager(new SecurityManager()); 
+		   }
 		System.setProperty("java.rmi.server.hostname","192.168.1.7");
 		System.out.println("Server avviato");
 		

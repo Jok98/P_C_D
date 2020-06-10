@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.URISyntaxException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -41,6 +42,9 @@ public class F_main extends UnicastRemoteObject {
      * @throws ClassNotFoundException
      */
 	public static void main(String[] args) throws IOException, URISyntaxException, AlreadyBoundException, NotBoundException, ClassNotFoundException {
+		if (System.getSecurityManager() == null) { 
+		     System.setSecurityManager(new SecurityManager()); 
+		   }
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
     	System.out.println("Inserire URL del sito desiderato");
     	url = input.readLine();

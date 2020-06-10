@@ -30,7 +30,9 @@ public class F_Slave extends Thread implements S_F_int{
 	 * 
 	 */
 	public void run() {
-		
+		if (System.getSecurityManager() == null) { 
+		     System.setSecurityManager(new SecurityManager()); 
+		   }
 		System.out.println("Partito");
 		try {
 		

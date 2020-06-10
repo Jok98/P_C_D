@@ -38,6 +38,9 @@ public class C_main {
      * 
      */
     public static void main (String[] args) throws NotBoundException, IOException, ClassNotFoundException, InterruptedException {
+    	if (System.getSecurityManager() == null) { 
+    	     System.setSecurityManager(new SecurityManager()); 
+    	   }
     	InetAddress addr = InetAddress.getByName(null);
     	Socket socket = new Socket(addr, 8080);
     	System.out.println("connsesso");
