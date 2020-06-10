@@ -15,6 +15,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 //usare stub extends UnicastRemoteObject
@@ -37,21 +38,23 @@ public class F_Slave extends Thread implements S_F_int{
 		
 		System.out.println("Partito");
 		try {
-			
+		
 			S_F_int obj = new F_Slave(registry);
 			S_F_int F = (S_F_int)UnicastRemoteObject.exportObject(obj, 1099);
 			registry.rebind("SF",F);
 			
+			//html = (String) S_Master.in.readObject();
+			
 			/*
 			 * client
 			 */
-			/*registry = LocateRegistry.getRegistry();
-			F_S_int fs = (F_S_int)registry.lookup("FS");
-			url = fs.getUrl();
-			System.out.println(url);
-			*/
-			System.out.println("Registro caricato : " + registry.list());
 			
+		
+			
+			
+			System.out.println("Registro caricato : " + registry.list());
+			System.out.println("S_Thread ha ricevuto l'url : " + S_Master.url);
+			System.out.println("S_Thread ha ricevuto l'head : " + S_Master.html);
 			
 			
 		} catch (IOException e) {
@@ -93,8 +96,20 @@ public class F_Slave extends Thread implements S_F_int{
 
                 html= stringBuilder.toString();
             }
+        
+		//System.out.println("Ottenuto html dall' url "+ url);
+		
         return html;
 
+	}
+
+
+
+
+	@Override
+	public String sendData() throws IOException {
+		
+		return "Ehi";
 	}
 
 

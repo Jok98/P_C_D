@@ -24,7 +24,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 
-public class F_main extends UnicastRemoteObject implements F_S_int  {
+public class F_main extends UnicastRemoteObject  {
     
     public F_main() throws RemoteException  {
     
@@ -36,42 +36,34 @@ public class F_main extends UnicastRemoteObject implements F_S_int  {
     static Registry registry;
     
     
-    public String getUrl() throws RemoteException {
-		
-		return url;
-	}
-    
-    public String getPage(){
-    	return html;
-    }
+
 
     
 
     
 
 	public static void main(String[] args) throws IOException, URISyntaxException, AlreadyBoundException, NotBoundException, ClassNotFoundException {
-    	
+		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
+    	System.out.println("Inserire URL del sito desiderato");
+    	url = input.readLine();
     	
     	InetAddress addr = InetAddress.getByName(null);
 		Socket socket = new Socket(addr, 8080);
 		ObjectOutputStream  out = new ObjectOutputStream(socket.getOutputStream());
 		
-		System.setProperty("java.rmi.server.hostname","192.168.1.7");
-		
-		String F = "F";
-		out.writeObject(F);
-		out.flush();
-		System.out.println("Inviato : "+F );
+    	out.writeObject("F"+"lll"+url);
+    	out.flush();
 		out.close();
-		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
-    	System.out.println("Inserire URL del sito desiderato");
-    	url = input.readLine();
+		System.out.println("Ottenuto html dall' url "+ url);
     	
-    	registry = LocateRegistry.getRegistry();
+		System.setProperty("java.rmi.server.hostname","192.168.1.7");
+		registry = LocateRegistry.getRegistry();
     	//client
     	S_F_int sf = (S_F_int) registry.lookup("SF");
-    	String texthtml=sf.getPage(url);
-    	System.out.println(texthtml);
+    	html=sf.getPage(url);
+    	System.out.println("Inviato : "+"F"+ " "+ url +" "+html );
+		
+
     	//server
     	/*
     	F_main f_main = new F_main();
@@ -87,6 +79,7 @@ public class F_main extends UnicastRemoteObject implements F_S_int  {
     	
 
     }
+
 
 	
 	
