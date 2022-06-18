@@ -11,7 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
  * 
  * @Author Matteo Moi
  * @Author Alex Rabuffetti
- * Jacopo Alessi
+ * 
  * 
  * Tramite {@link #registry} ottenuto da S_Master, F_Slave fa un autorebind.
  * F_Slave implementa S_F_int.
