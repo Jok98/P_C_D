@@ -12,11 +12,11 @@ import java.util.Scanner;
  * 
  * @Author Matteo Moi
  * @Author Alex Rabuffetti
- * Jacopo Alessi
+ * 
  * 
  * La classe S_Master crea un ServerSocket {@link #server} con porta = {@link #PORT}. 
- * Viene creato un {@link #registry} con porta "1099" il quale verr‡ utilizzato per la comunicazione RMI con le applicazioni C_main e F_main. 
- * Viene creato un nuovo {@link #in} che si occupa della lettura dei messaggi inviati da C_main e F_main e riguardante la tipologia di richiesta (se essa Ë fatta da F o C).
+ * Viene creato un {@link #registry} con porta "1099" il quale verr√† utilizzato per la comunicazione RMI con le applicazioni C_main e F_main. 
+ * Viene creato un nuovo {@link #in} che si occupa della lettura dei messaggi inviati da C_main e F_main e riguardante la tipologia di richiesta (se essa √® fatta da F o C).
  * Il ciclo while prevede che S_Master rimanga in attesa della richiesta identificata da (String user).
  * In base al richiedente S_Master la classe va a creare dei thread slave i quali si occuperanno della gestione specifica della richiesta.
  * Entrambi i thread (F_slave e C_Slave) richiedono come argomento il registry in modo che tutte le applicazioni impieghino unicamente quel singolo registro per il binding e il lookup.
