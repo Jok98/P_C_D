@@ -17,14 +17,14 @@ import java.util.Random;
  * 
  * @Author Matteo Moi
  * @Author Alex Rabuffetti
- * Jacopo Alessi
+ * 
  * 
  * Ad ogni avvio di un'istanza di C_main la quale si collega a S_Master (tramite {@link #socket}) che a sua volta va a creare un thread (C_slave) apposito per gestire la richiesta.
  * C_main esegue l'accesso al registry. Viene poi utilizzato un lookup per accedere ai metodi remoti implementati da C_slave.
  * Tramite metodi remoti L'istanza C_main viene inserita in una {@link #userList} dichiarata e contenuta in C_slave che tiene conto delle istanze di C_main che hanno fatto richiesta di abbonamento ad S_Master.
- * Viene generato randomicamente un boolean, che sar‡ usato come condizione per mantenere o no l'istanza di C_main attiva.
- * All'interno del ciclo se vengono rispettate le condizioni C_main visualizzer‡ a schermo l'URL e l'HTML inviati da F_main.
- * All'uscita del ciclo Ë previsto la cancellazione dell'utente dalla {@link #userList} degli abbonati.
+ * Viene generato randomicamente un boolean, che sar√† usato come condizione per mantenere o no l'istanza di C_main attiva.
+ * All'interno del ciclo se vengono rispettate le condizioni C_main visualizzer√† a schermo l'URL e l'HTML inviati da F_main.
+ * All'uscita del ciclo √® previsto la cancellazione dell'utente dalla {@link #userList} degli abbonati.
  * 
  */
 public class C_main {
