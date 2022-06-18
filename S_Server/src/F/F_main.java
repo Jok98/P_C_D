@@ -18,9 +18,9 @@ import java.rmi.server.UnicastRemoteObject;
  * 
  * @Author Matteo Moi
  * @Author Alex Rabuffetti
- * Jacopo Alessi
  * 
- * F_main chiede all'utente in input un {@link #url} dal quale poi S_Master ricaver‡ una stringa contentente l'HTML.
+ * 
+ * F_main chiede all'utente in input un {@link #url} dal quale poi S_Master ricaver√† una stringa contentente l'HTML.
  * La richiesta di F_main a S_Master viene identificata tramite l'invio di una stringa (ObjectOutputStream) con cui viene inviato anche {@link #url}.
  * 
  * 
