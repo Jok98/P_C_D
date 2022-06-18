@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * @Author Matteo Moi
  * @Author Alex Rabuffetti
- * Jacopo Alessi
+ * 
  * 
  *C_Slave gestisce le richieste da parte dell'app C_Main tramite {@link #reg} autobindando la propria classe che implementa i metodi dell'interfaccia S_C_int.
  *
